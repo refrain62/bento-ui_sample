@@ -1,0 +1,78 @@
+@import "https://unpkg.com/open-props" layer(design.system);
+@import "https://unpkg.com/open-props/normalize.min.css" layer(demo.support);
+::view-transition-group(*) {
+  animation-timing-function: var(--ease-squish-1);
+  animation-timing-function: var(--ease-spring-2);
+  animation-duration: 0.75s;
+}
+
+@layer demo {
+  .bento {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--size-3);
+    min-inline-size: 75vw;
+    aspect-ratio: var(--ratio-widescreen);
+  }
+  .bento > * {
+    border-radius: var(--radius-3);
+    background: var(--surface-2);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .bento > *:nth-child(1) {
+      view-transition-name: opt-1;
+    }
+    .bento > *:nth-child(1) > label {
+      view-transition-name: opt-1-label;
+    }
+    .bento > *:nth-child(1) > input {
+      view-transition-name: opt-1-input;
+    }
+    .bento > *:nth-child(2) {
+      view-transition-name: opt-2;
+    }
+    .bento > *:nth-child(2) > label {
+      view-transition-name: opt-2-label;
+    }
+    .bento > *:nth-child(2) > input {
+      view-transition-name: opt-2-input;
+    }
+    .bento > *:nth-child(3) {
+      view-transition-name: opt-3;
+    }
+    .bento > *:nth-child(3) > label {
+      view-transition-name: opt-3-label;
+    }
+    .bento > *:nth-child(3) > input {
+      view-transition-name: opt-3-input;
+    }
+    .bento > * :is(label, input) {
+      width: -moz-fit-content;
+      width: fit-content;
+    }
+  }
+  .bento > div:has(input:checked) {
+    grid-row: 1/-1;
+    grid-column: 1;
+  }
+}
+@layer demo.support {
+  body {
+    display: grid;
+    place-content: center;
+    padding: var(--size-5);
+    gap: var(--size-5);
+  }
+  fieldset {
+    border: none;
+  }
+  fieldset > div {
+    display: grid;
+    grid: 1fr/1fr;
+    padding: var(--size-3);
+  }
+  fieldset > div > label {
+    grid-area: 1/1;
+  }
+}/*# sourceMappingURL=bento.css.map */
